@@ -1,9 +1,40 @@
-<html>
-    <head>
-       <link rel="stylesheet" href="index.css">
-    </head>
-    <body>
-	<script src="index.js"></script>
-    </body>
-</html>
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="container">
+                <h1 class="h1">Jimmy’s Diner</h1>
+                <p class="header_p">The best burgers and pizzas in town.</p>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div id="menu_items" class="menu_items">
+
+            </div>
+            <div id="order_details" class="order_details">
+                <h2>Your Order</h2>
+                <div class="order_items"></div>
+                <div class="total_price">
+                    <h3>Total Price:</h3>
+                    <p></p>
+                </div>
+                <button id="complete_order_btn">Complete Order</button>
+            </div>
+        </div>
+    </main>
+    <script src="index.js" type="module"></script>
+</body>
+
+</html>
