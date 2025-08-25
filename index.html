@@ -24,13 +24,39 @@
 
             </div>
             <div id="order_details" class="order_details">
-                <h2>Your Order</h2>
-                <div class="order_items"></div>
-                <div class="total_price">
-                    <h3>Total Price:</h3>
-                    <p></p>
-                </div>
-                <button id="complete_order_btn">Complete Order</button>
+
+            </div>
+            <div class="modal hidden" id="modal">
+                <h2 class="modal_h2">Enter card details</h2>
+                <form action="#" class="modal_form" id="modal_form">
+                    <div class="modal_inputs">
+                        <input type="text" id="name" placeholder="Enter your name" name="name" aria-label="Name input"
+                            class="modal_input" required>
+                        <input 
+                            type="text" 
+                            inputmode="numeric" 
+                            maxlength="19" 
+                            placeholder="Enter card number"
+                            title="Enter a valid 16-digit card number" 
+                            name="card_number"
+                            required
+                            id="card_number"
+                            class="modal_input"
+                            oninput="
+                                this.value = this.value
+                                .replace(/[^0-9]/g, '')       // remove non-digits
+                                .replace(/(.{4})/g, '$1 ')    // add space every 4 digits
+                                .trim();                      // remove trailing space
+                            "
+                        >
+                        <input type="text" pattern="^\d{3}$" maxlength="3"
+                            oninput="this.value = this.value.replace(/[^0-9]/g, '')" name="cvv" placeholder="Enter CVV"
+                            id="cvv" class="modal_input" required>
+                    </div>
+
+                    <button type="submit" class="modal_btn">Pay</button>
+
+                </form>
             </div>
         </div>
     </main>
