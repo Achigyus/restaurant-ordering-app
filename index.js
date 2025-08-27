@@ -17,8 +17,8 @@ function renderMenu() {
                 <div class="emoji">${emoji}</div>
                 <div class="item_details">
                     <h3>${name}</h3>
-                    <p>${ingredients.join(", ")}</p>
-                    <p>$${price}</p>
+                    <p class="ingredients">${ingredients.join(", ")}</p>
+                    <p class="item_price">$${price}</p>
                 </div>
                 <button type="button" class="add_btn" data-id="${id}" id="${id}">+</button>
             </div>
