@@ -4,7 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Jimmy’s Diner | Best Burgers & Pizzas in Town</title>
+    <meta name="description" content="Jimmy’s Diner - The best burgers and pizzas in town. Order online and enjoy delicious food, fast service, and a great experience.">
+    <meta name="author" content="Jimmy’s Diner">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+    <link rel="manifest" href="/assets/icons/site.webmanifest">
     <link rel="stylesheet" href="index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,36 +36,38 @@
 
             </div>
             <div class="modal hidden" id="modal">
-                <h2 class="modal_h2">Enter card details</h2>
-                <form action="#" class="modal_form" id="modal_form">
-                    <div class="modal_inputs">
-                        <input type="text" id="name" placeholder="Enter your name" name="name" aria-label="Name input"
-                            class="modal_input" required>
-                        <input 
-                            type="text" 
-                            inputmode="numeric" 
-                            maxlength="19" 
-                            placeholder="Enter card number"
-                            title="Enter a valid 16-digit card number" 
-                            name="card_number"
-                            required
-                            id="card_number"
-                            class="modal_input"
-                            oninput="
-                                this.value = this.value
-                                .replace(/[^0-9]/g, '')       // remove non-digits
-                                .replace(/(.{4})/g, '$1 ')    // add space every 4 digits
-                                .trim();                      // remove trailing space
-                            "
-                        >
-                        <input type="text" pattern="^\d{3}$" maxlength="3"
-                            oninput="this.value = this.value.replace(/[^0-9]/g, '')" name="cvv" placeholder="Enter CVV"
-                            id="cvv" class="modal_input" required>
-                    </div>
-
-                    <button type="submit" class="modal_btn">Pay</button>
-
-                </form>
+                <div class="inner_modal">
+                    <h2 class="modal_h2">Enter card details</h2>
+                    <form action="#" class="modal_form" id="modal_form">
+                        <div class="modal_inputs">
+                            <input type="text" id="name" placeholder="Enter your name" name="name" aria-label="Name input"
+                                class="modal_input" required>
+                            <input 
+                                type="text" 
+                                inputmode="numeric" 
+                                maxlength="19" 
+                                placeholder="Enter card number"
+                                title="Enter a valid 16-digit card number" 
+                                name="card_number"
+                                required
+                                id="card_number"
+                                class="modal_input"
+                                oninput="
+                                    this.value = this.value
+                                    .replace(/[^0-9]/g, '')       // remove non-digits
+                                    .replace(/(.{4})/g, '$1 ')    // add space every 4 digits
+                                    .trim();                      // remove trailing space
+                                "
+                            >
+                            <input type="text" pattern="^\d{3}$" maxlength="3"
+                                oninput="this.value = this.value.replace(/[^0-9]/g, '')" name="cvv" placeholder="Enter CVV"
+                                id="cvv" class="modal_input" required>
+                        </div>
+    
+                        <button type="submit" class="modal_btn">Pay</button>
+    
+                    </form>
+                </div>
             </div>
         </div>
     </main>

@@ -47,6 +47,7 @@ modalForm.addEventListener("submit", function(e) {
 
     // Render thank you and rating UI
     orderDetails.innerHTML = `
+    <div class="thank_you">
         <p>Thanks, ${name}! Your order is on its way!</p>
         <div class="rating">
             <p>Please rate your experience:</p>
@@ -57,6 +58,7 @@ modalForm.addEventListener("submit", function(e) {
             </div>
             <p id="rating-result"></p>
         </div>
+    </div>
     `;
 
     // Add event listener for star rating
@@ -67,7 +69,12 @@ modalForm.addEventListener("submit", function(e) {
             if (e.target.classList.contains("star")) {
                 const value = e.target.dataset.value;
                 ratingResult.textContent = `You rated us ${value} out of 5 stars.`;
-                
+                // Disable all stars
+                const stars = starRatingDiv.querySelectorAll(".star");
+                stars.forEach(star => {
+                    star.style.pointerEvents = "none";
+                    star.style.opacity = "0.5";
+                });
                 setTimeout(() => {
                     orderDetails.innerHTML = "";
                 }, 3000);
@@ -87,6 +94,18 @@ function handleDocBtnClick(e) {
     }
     if (e.target.id === "modal_close_btn") {
         modal.classList.add("hidden");
+    }
+    if (e.target.classList.contains("remove_item_btn")) {
+        const itemId = e.target.dataset.id;
+        const index = orderItems.findIndex(item => item.id == itemId);
+        if (index !== -1) {
+            orderItems.splice(index, 1);
+            // Clear beer discount if Beer is no longer in the order
+            if (!orderItems.some(item => item.name === "Beer")) {
+                hasDiscount = false;
+            }
+            renderOrder(orderItems);
+        }
     }
 }
 
@@ -112,16 +131,17 @@ function renderOrder(ordersArray) {
         return;
     } else {
         let totalPrice = 0;
+        hasDiscount = false; // Reset before calculation
 
         const orderItemsHtml = ordersArray.map((item) => {
-            const { name, price, amount } = item;
+            const { name, price, amount, id } = item;
             totalPrice += (price * amount);
             if (name === "Beer") {
                 hasDiscount = true;
             }
             return `
                 <div class="order_item">
-                    <h3>${name} x${amount}</h3>
+                    <h3>${name} x${amount} <span class="remove_item_btn" data-id="${id}" style="cursor:pointer;">remove</span></h3>
                     <p>$${price * amount}</p>
                 </div>
             `
@@ -130,7 +150,7 @@ function renderOrder(ordersArray) {
             totalPrice = totalPrice * 0.9; // Apply 10% discount
         }
         orderDetails.innerHTML = `
-            <h2>Your Order</h2>
+            <h2 class="order_details_h2">Your Order</h2>
             <div class="order_items">
                 ${orderItemsHtml}
             </div>
@@ -139,7 +159,7 @@ function renderOrder(ordersArray) {
                 
                 <p>$${totalPrice.toFixed(2)} ${hasDiscount ? "(10% Beer Discount Applied)" : ""}</p>
             </div>
-            <button id="complete_order_btn">Complete Order</button>
+            <button class="complete_order_btn" id="complete_order_btn">Complete Order</button>
         `
     }
 }
